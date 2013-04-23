@@ -1,5 +1,5 @@
 Plugin:          Stringer                                        
-Author:          Bradley Drake                                  
+Author:          Bradley Drake www.torchdevelopment.com                             
 Version:         v1.0                                            
 Description:     Methods used to manipulate strings              
 Documentation:   https://github.com/misirlu13/Stringer.git       
