@@ -55,8 +55,7 @@ var test = '          This is my test string        ';
 var newTest = test.trim();
 ****************************************************************************/
 if(!String.prototype.trimString){
-    function trimString(inplace) {
-        var mod = (typeof inplace !== 'boolean' ? true : inplace);
+    function trimString() {
         var string = this.toString();
         var beginTrim = new RegExp(/^[\s\r\t\n]+/);
         var endTrim = new RegExp(/[\s\r\t\n]+$/);
@@ -69,11 +68,7 @@ if(!String.prototype.trimString){
         string = string.replace(endTrim, '');
         (stringNode != null ? stringNode.innerHTML = string : '');
 
-        if (mod) {
-            return this.replace(this, string);
-        } else {
-            return string;
-        }
+        return string;
     }
     String.prototype.trimString = trimString;
 }
@@ -91,10 +86,9 @@ var test = 'This is my test string';
 var newTest = test.removeTrailing('g');
 ****************************************************************************/
 if(!String.prototype.removeTrailing) {
-    function removeTrailing(x, inplace) {
+    function removeTrailing(x) {
         x = escapeRegExChars(x);
 
-        var mod = (typeof inplace !== 'boolean' ? true : inplace);
         var string = this.toString();
         var stringReg = '/[' + x + ']$/';
         var endReg = new RegExp(/[\r\t\n\s]+$/);
@@ -110,11 +104,8 @@ if(!String.prototype.removeTrailing) {
         (stringNode != null ? stringNode.innerHTML = string : '');
         stringNode = null;
 
-        if (mod) {
-            return this.replace(this, string);
-        } else {
-            return string;
-        }
+        return string;
+
     }
     String.prototype.removeTrailing = removeTrailing;
 }
@@ -132,10 +123,9 @@ var test = 'This is my test string';
 var newTest = test.removeLeading('T');
 ****************************************************************************/
 if(!String.prototype.removeLeading) {
-    function removeLeading(x, inplace) {
+    function removeLeading(x) {
         x = escapeRegExChars(x);
 
-        var mod = (typeof inplace !== 'boolean' ? true : inplace);
         var string = this.toString();
         var stringReg = '/^[' + x + ']/';
         var startReg = new RegExp(/^[\s\r\t\n]+/);
@@ -151,11 +141,7 @@ if(!String.prototype.removeLeading) {
         (stringNode != null ? stringNode.innerHTML = string : '');
         stringNode = null;
 
-        if (mod) {
-            return this.replace(this, string);
-        } else {
-            return string;
-        }
+        return string;
     }
     String.prototype.removeLeading = removeLeading;
 }
@@ -348,8 +334,7 @@ var test = 'This is my test string';
 var newTest = test.padLeading('6, '...');
 ****************************************************************************/
 if(!String.prototype.padLeading){
-    function padLeading(length, char, inplace) {
-        var mod = (typeof inplace !== 'boolean' ? true : inplace);
+    function padLeading(length, char) {
         var string = this.toString();
         var newString = '';
         var replaceChar = (char !== '' && typeof char !== 'undefined' ? char : ' ');
@@ -365,11 +350,8 @@ if(!String.prototype.padLeading){
         (stringNode != null ? stringNode.innerHTML = newString + string : '');
         stringNode = null;
 
-        if (mod) {
-            return this.replace(this, newString + string);
-        } else {
-            return newString + string;;
-        }
+
+        return newString + string;;
     }
     String.prototype.padLeading = padLeading;
 }
@@ -388,8 +370,7 @@ var test = 'This is my test string';
 var newTest = test.padTrailing('6, '...');
 ****************************************************************************/
 if(!String.prototype.padTrailing){
-    function padTrailing(length, char, inplace) {
-        var mod = (typeof inplace !== 'boolean' ? true : inplace);
+    function padTrailing(length, char) {
         var string = this.toString();
         var newString = '';
         var replaceChar = (char !== '' && typeof char !== 'undefined' ? char : ' ');
@@ -405,11 +386,7 @@ if(!String.prototype.padTrailing){
         (stringNode != null ? stringNode.innerHTML = string + newString : '');
         stringNode = null;
 
-        if (mod) {
-            return this.replace(this, string + newString);
-        } else {
-            return string + newString;
-        }
+        return string + newString;
     }
     String.prototype.padTrailing = padTrailing;
 }
@@ -426,8 +403,7 @@ var test = 'This is my test string';
 var newTest = test.reverseString();
 ****************************************************************************/
 if(!String.prototype.reverseString){
-    function reverseString(inplace) {
-        var mod = (typeof inplace !== 'boolean' ? true : inplace);
+    function reverseString() {
         var string = this.toString();
         var strArray = string.split('');
 
@@ -438,11 +414,7 @@ if(!String.prototype.reverseString){
         (stringNode != null ? stringNode.innerHTML = strArray.reverse().join("") : '');
         stringNode = null;
 
-        if (mod) {
-            return this.replace(this, strArray.reverse().join(""));
-        } else {
-            return strArray.reverse().join("");
-        }
+        return strArray.reverse().join("");
     }
     String.prototype.reverseString = reverseString;
 }
@@ -464,7 +436,7 @@ var test = 'This is my test string';
 var newTest = test.merge(11, 'spanking new');
 ****************************************************************************/
 if(!String.prototype.merge){
-    function merge(pos, newString, inplace) {
+    function merge(pos, newString) {
         var mod = (typeof inplace !== 'boolean' ? true : inplace);
         var string = this.toString();
         var strArray = string.split('');
@@ -476,11 +448,7 @@ if(!String.prototype.merge){
         (stringNode != null ? stringNode.innerHTML = strArray.join('') : '');
         stringNode = null;
 
-        if (mod) {
-            return this.replace(this, strArray.join(''));
-        } else {
-            return strArray.join('');
-        }
+        return strArray.join('');
     }
     String.prototype.merge = merge;
 }
