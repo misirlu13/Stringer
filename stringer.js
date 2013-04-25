@@ -57,15 +57,13 @@ var newTest = test.trim();
 if(!String.prototype.trimString){
     function trimString() {
         var string = this.toString();
-        var beginTrim = new RegExp(/^[\s\r\t\n]+/);
-        var endTrim = new RegExp(/[\s\r\t\n]+$/);
+        var regEx = new RegExp(/^\s+|\s+$/g);
 
         if (stringNode == null) {
             getStringParent(string);
         }
 
-        string = string.replace(beginTrim, '');
-        string = string.replace(endTrim, '');
+        string = string.replace(regEx, '');
         (stringNode != null ? stringNode.innerHTML = string : '');
 
         return string;
