@@ -47,7 +47,7 @@ Trims leading and trailing whitespace, returns, new lines, and tab characters
 
 Use Case:
 
-$('#test').text.trim();
+$('#test').text().trim();
 
 document.getElementById('test').innerHTML.trim();
 
@@ -76,7 +76,7 @@ Removes the tailing character specified by the parameter
 
 Use Case:
 
-$('#test').text.removeTrailing('g');
+$('#test').text().removeTrailing('g');
 
 document.getElementById('test').innerHTML.removeTrailing('g');
 
@@ -113,7 +113,7 @@ Removes the leading character specified by the parameter
 
 Use Case:
 
-$('#test').text.removeLeading('T');
+$('#test').text().removeLeading('T');
 
 document.getElementById('test').innerHTML.removeLeading('T');
 
@@ -149,7 +149,7 @@ Boolean:  Checks to see if the string starts with the parameter
 
 Use Case:
 
-$('#test').text.beginsWith('T');
+$('#test').text().beginsWith('T');
 
 document.getElementById('test').innerHTML.beginsWith('T');
 
@@ -173,7 +173,7 @@ Boolean:  Checks to see if the string ends with the parameter
 
 Use Case:
 
-$('#test').text.endsWith('g');
+$('#test').text().endsWith('g');
 
 document.getElementById('test').innerHTML.endsWith('g');
 
@@ -196,7 +196,7 @@ Boolean:  Checks to see if the parameter and string match
 
 Use Case:
 
-$('#test').text.compare('This is not my test string');
+$('#test').text().compare('This is not my test string');
 
 document.getElementById('test').innerHTML.compare('This is not my test string');
 
@@ -217,7 +217,7 @@ Boolean:  Checks to see if the string contains the parameter
 
 Use Case:
 
-$('#test').text.contains('test string');
+$('#test').text().contains('test string');
 
 document.getElementById('test').innerHTML.contains('test string');
 
@@ -240,7 +240,7 @@ Returns the index of the parameter
 
 Use Case:
 
-$('#test').text.findString('This');
+$('#test').text().findString('This');
 
 document.getElementById('test').innerHTML.findString('This');
 
@@ -260,7 +260,7 @@ Returns the character of the index provided by the parameter
 
 Use Case:
 
-$('#test').text.getString(6);
+$('#test').text().getString(6);
 
 document.getElementById('test').innerHTML.getString(6);
 
@@ -281,7 +281,7 @@ parameter is lower case
 
 Use Case:
 
-$('#test').text.isLower(6);
+$('#test').text().isLower(6);
 
 document.getElementById('test').innerHTML.isLower(6);
 
@@ -302,7 +302,7 @@ parameter is upper case
 
 Use Case:
 
-$('#test').text.isUpper(6);
+$('#test').text().isUpper(6);
 
 document.getElementById('test').innerHTML.isUpper(6);
 
@@ -324,7 +324,7 @@ padding is defaulted to whitespace, but can be passed as a parameter
 
 Use Case:
 
-$('#test').text.padLeading('6, '...');
+$('#test').text().padLeading('6, '...');
 
 document.getElementById('test').innerHTML.padLeading('6, '...');
 
@@ -360,7 +360,7 @@ padding is defaulted to whitespace, but can be passed as a parameter
 
 Use Case:
 
-$('#test').text.padTrailing('6, '...');
+$('#test').text().padTrailing('6, '...');
 
 document.getElementById('test').innerHTML.padTrailing('6, '...');
 
@@ -393,7 +393,7 @@ Reverses the string
 
 Use Case:
 
-$('#test').text.reverseString();
+$('#test').text().reverseString();
 
 document.getElementById('test').innerHTML.reverseString();
 
@@ -426,7 +426,7 @@ like to merge with the original string
 
 Use Case:
 
-$('#test').text.merge(11, 'spanking new');
+$('#test').text().merge(11, 'spanking new');
 
 document.getElementById('test').innerHTML.merge(11, 'spanking new');
 
