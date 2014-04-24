@@ -1,9 +1,9 @@
-/* Plugin:          Stringer                                        */
-/* Author:          Bradley Drake                                   */
-/* Version:         v1.1                                            */
-/* Description:     Methods used to manipulate strings              */
-/* Documentation:   https://github.com/misirlu13/Stringer.git       */
-/* License:         Apache License, Version 2.0 (the "License")     */
+/*                      STRINGER                        	*/
+/* Author:          Bradley Drake                       	*/
+/* Plugin:          Stringer                            	*/
+/* Version:         v1.0                                	*/
+/* Description:     Methods used to manipulate strings  	*/
+/* Documentation:   https://github.com/misirlu13/Stringer 	*/
 
 
 
@@ -54,22 +54,21 @@ document.getElementById('test').innerHTML.trim();
 var test = '          This is my test string        ';
 var newTest = test.trim();
 ****************************************************************************/
-if(!String.prototype.trimString){
-    function trimString() {
-        var string = this.toString();
-        var regEx = new RegExp(/^\s+|\s+$/g);
+function trim() {
+    var string = this.toString();
+    var beginTrim = new RegExp(/^[\s\r\t\n]+/);
+    var endTrim = new RegExp(/[\s\r\t\n]+$/);
 
-        if (stringNode == null) {
-            getStringParent(string);
-        }
-
-        string = string.replace(regEx, '');
-        (stringNode != null ? stringNode.innerHTML = string : '');
-
-        return string;
+    if (stringNode == null) {
+        getStringParent(string);
     }
-    String.prototype.trimString = trimString;
-}
+    console.log(stringNode);
+    string = string.replace(beginTrim, '');
+    string = string.replace(endTrim, '');
+    (stringNode != null ? stringNode.innerHTML = string : '');
+
+    return string;
+};
 
 /****************************************************************************
 Removes the tailing character specified by the parameter
@@ -83,30 +82,26 @@ document.getElementById('test').innerHTML.removeTrailing('g');
 var test = 'This is my test string';
 var newTest = test.removeTrailing('g');
 ****************************************************************************/
-if(!String.prototype.removeTrailing) {
-    function removeTrailing(x) {
-        x = escapeRegExChars(x);
+function removeTrailing(x) {
+    x = escapeRegExChars(x);
 
-        var string = this.toString();
-        var stringReg = '/[' + x + ']$/';
-        var endReg = new RegExp(/[\r\t\n\s]+$/);
-        var endPadding = string.match(endReg);
+    var string = this.toString();
+    var stringReg = '/[' + x + ']$/';
+    var endReg = new RegExp(/[\r\t\n\s]+$/);
+    var endPadding = string.match(endReg);
 
-        if (stringNode == null) {
-            getStringParent(string);
-        }
-
-        string = string.replace(endReg, '');
-        string = string.replace(eval(stringReg), '');
-        string = string + (endPadding != null ? endPadding : '');
-        (stringNode != null ? stringNode.innerHTML = string : '');
-        stringNode = null;
-
-        return string;
-
+    if (stringNode == null) {
+        getStringParent(string);
     }
-    String.prototype.removeTrailing = removeTrailing;
-}
+
+    string = string.replace(endReg, '');
+    string = string.replace(eval(stringReg), '');
+    string = string + (endPadding != null ? endPadding : '');
+    (stringNode != null ? stringNode.innerHTML = string : '');
+    stringNode = null;
+
+    return string;
+};
 
 /****************************************************************************
 Removes the leading character specified by the parameter
@@ -120,28 +115,25 @@ document.getElementById('test').innerHTML.removeLeading('T');
 var test = 'This is my test string';
 var newTest = test.removeLeading('T');
 ****************************************************************************/
-if(!String.prototype.removeLeading) {
-    function removeLeading(x) {
-        x = escapeRegExChars(x);
+function removeLeading(x) {
+    x = escapeRegExChars(x);
 
-        var string = this.toString();
-        var stringReg = '/^[' + x + ']/';
-        var startReg = new RegExp(/^[\s\r\t\n]+/);
-        var startPadding = string.match(startReg);
+    var string = this.toString();
+    var stringReg = '/^[' + x + ']/';
+    var startReg = new RegExp(/^[\s\r\t\n]+/);
+    var startPadding = string.match(startReg);
 
-        if (stringNode == null) {
-            getStringParent(string);
-        }
-
-        string = string.replace(startReg, '');
-        string = string.replace(eval(stringReg), '');
-        string = (startPadding != null ? startPadding : '') + string;
-        (stringNode != null ? stringNode.innerHTML = string : '');
-        stringNode = null;
-
-        return string;
+    if (stringNode == null) {
+        getStringParent(string);
     }
-    String.prototype.removeLeading = removeLeading;
+
+    string = string.replace(startReg, '');
+    string = string.replace(eval(stringReg), '');
+    string = (startPadding != null ? startPadding : '') + string;
+    (stringNode != null ? stringNode.innerHTML = string : '');
+    stringNode = null;
+
+    return string
 }
 
 /****************************************************************************
@@ -156,16 +148,13 @@ document.getElementById('test').innerHTML.beginsWith('T');
 var test = 'This is my test string';
 var newTest = test.beginsWith('T');
 ****************************************************************************/
-if(!String.prototype.beginsWith) {
-    function beginsWith(x) {
-        x = escapeRegExChars(x);
+function beginsWith(x) {
+    x = escapeRegExChars(x);
 
-        var string = this.toString();
-        var stringReg = '/^' + x + '/';
+    var string = this.toString();
+    var stringReg = '/^' + x + '/';
     
-        return (string.match(eval(stringReg)) ? true : false);
-    }
-    String.prototype.beginsWith = beginsWith;
+    return (string.match(eval(stringReg)) ? true : false);
 }
 
 /****************************************************************************
@@ -180,17 +169,15 @@ document.getElementById('test').innerHTML.endsWith('g');
 var test = 'This is my test string';
 var newTest = test.endsWith('g');
 ****************************************************************************/
-if(!String.prototype.endsWith) {
-    function endsWith(x) {
-        x = escapeRegExChars(x);
+function endsWith(x) {
+    x = escapeRegExChars(x);
 
-        var string = this.toString();
-        var stringReg = '/' + x + '$/';
+    var string = this.toString();
+    var stringReg = '/' + x + '$/';
 
-        return (string.match(eval(stringReg)) ? true : false);
-    }
-    String.prototype.endsWith = endsWith;
+    return (string.match(eval(stringReg)) ? true : false);
 }
+
 /****************************************************************************
 Boolean:  Checks to see if the parameter and string match
 
@@ -203,13 +190,10 @@ document.getElementById('test').innerHTML.compare('This is not my test string');
 var test = 'This is my test string';
 var newTest = test.compare('This is not my test string');
 ****************************************************************************/
-if(!String.prototype.compare){
-    function compare(x) {
-        var string = this.toString();
+function compare(x) {
+    var string = this.toString();
 
-        return (string === x ? true : false);
-    }
-    String.prototype.compare = compare;
+    return (string === x ? true : false);
 }
 
 /****************************************************************************
@@ -224,17 +208,15 @@ document.getElementById('test').innerHTML.contains('test string');
 var test = 'This is my test string';
 var newTest = test.contains('test string');
 ****************************************************************************/
-if(!String.prototype.contains){
-    function contains(x) {
-        x = escapeRegExChars(x);
+function contains(x) {
+    x = escapeRegExChars(x);
 
-        var string = this.toString();
-        var stringReg = '/' + x + '/';
+    var string = this.toString();
+    var stringReg = '/' + x + '/';
 
-        return (string.match(eval(stringReg)) ? true : false);
-    }
-    String.prototype.contains = contains;
+    return (string.match(eval(stringReg)) ? true : false);
 }
+
 /****************************************************************************
 Returns the index of the parameter
 
@@ -247,14 +229,12 @@ document.getElementById('test').innerHTML.findString('This');
 var test = 'This is my test string';
 var newTest = test.findString('This');
 ****************************************************************************/
-if(!String.prototype.findString){
-    function findString(x) {
-        var string = this.toString();
+function findString(x) {
+    var string = this.toString();
 
-        return string.indexOf(x);
-    }
-    String.prototype.findString = findString;
+    return string.indexOf(x);
 }
+
 /****************************************************************************
 Returns the character of the index provided by the parameter
 
@@ -267,14 +247,12 @@ document.getElementById('test').innerHTML.getString(6);
 var test = 'This is my test string';
 var newTest = test.getString(6);
 ****************************************************************************/
-if(!String.prototype.getString){
-    function getString(x) {
-        var string = this.toString();
+function getString(x) {
+    var string = this.toString();
 
-        return string.charAt(x);
-    }
-    String.prototype.getString = getString;
+    return string.charAt(x);
 }
+
 /****************************************************************************
 Boolean:  Checks to see if the character of the index provided by the 
 parameter is lower case
@@ -288,14 +266,12 @@ document.getElementById('test').innerHTML.isLower(6);
 var test = 'This is my test string';
 var newTest = test.isLower(6);
 ****************************************************************************/
-if(!String.prototype.isLower){
-    function isLower(x) {
-        var string = this.toString();
+function isLower(x) {
+    var string = this.toString();
 
-        return (string.charAt(x) !== string.charAt(x).toUpperCase() ? true : false);
-    }
-    String.prototype.isLower = isLower;
+    return (string.charAt(x) !== string.charAt(x).toUpperCase() ? true : false);
 }
+
 /****************************************************************************
 Boolean:  Checks to see if the character of the index provided by the 
 parameter is upper case
@@ -309,14 +285,12 @@ document.getElementById('test').innerHTML.isUpper(6);
 var test = 'This is my test string';
 var newTest = test.isUpper(6);
 ****************************************************************************/
-if(!String.prototype.isUpper){
-    function isUpper(x) {
-        var string = this.toString();
+function isUpper(x) {
+    var string = this.toString();
 
-        return (string.charAt(x) === string.charAt(x).toUpperCase() ? true : false);
-    }
-    String.prototype.isUpper = isUpper;
+    return (string.charAt(x) === string.charAt(x).toUpperCase() ? true : false);
 }
+
 /****************************************************************************
 Gives padding in front of the string.  The number of "pads" given to the 
 string is based on the length parameter, and the character that gives the 
@@ -331,28 +305,25 @@ document.getElementById('test').innerHTML.padLeading('6, '...');
 var test = 'This is my test string';
 var newTest = test.padLeading('6, '...');
 ****************************************************************************/
-if(!String.prototype.padLeading){
-    function padLeading(length, char) {
-        var string = this.toString();
-        var newString = '';
-        var replaceChar = (char !== '' && typeof char !== 'undefined' ? char : ' ');
+function padLeading(length, char) {
+    var string = this.toString();
+    var newString = '';
+    var replaceChar = (char !== '' && typeof char !== 'undefined' ? char : ' ');
 
-        if (stringNode == null) {
-            getStringParent(string);
-        }
-
-        for (i = 0; i < length; i++) {
-            newString += replaceChar;
-        }
-
-        (stringNode != null ? stringNode.innerHTML = newString + string : '');
-        stringNode = null;
-
-
-        return newString + string;;
+    if (stringNode == null) {
+        getStringParent(string);
     }
-    String.prototype.padLeading = padLeading;
+
+    for (i = 0; i < length; i++) {
+        newString += replaceChar;
+    }
+
+    (stringNode != null ? stringNode.innerHTML = newString + string : '');
+    stringNode = null;
+
+    return newString + string;
 }
+
 /****************************************************************************
 Gives padding in the back  of the string.  The number of "pads" given to the 
 string is based on the length parameter, and the character that gives the 
@@ -367,27 +338,25 @@ document.getElementById('test').innerHTML.padTrailing('6, '...');
 var test = 'This is my test string';
 var newTest = test.padTrailing('6, '...');
 ****************************************************************************/
-if(!String.prototype.padTrailing){
-    function padTrailing(length, char) {
-        var string = this.toString();
-        var newString = '';
-        var replaceChar = (char !== '' && typeof char !== 'undefined' ? char : ' ');
+function padTrailing(length, char) {
+    var string = this.toString();
+    var newString = '';
+    var replaceChar = (char !== '' && typeof char !== 'undefined' ? char : ' ');
 
-        if (stringNode == null) {
-            getStringParent(string);
-        }
-
-        for (i = 0; i < length; i++) {
-            newString += replaceChar;
-        }
-
-        (stringNode != null ? stringNode.innerHTML = string + newString : '');
-        stringNode = null;
-
-        return string + newString;
+    if (stringNode == null) {
+        getStringParent(string);
     }
-    String.prototype.padTrailing = padTrailing;
+
+    for (i = 0; i < length; i++) {
+        newString += replaceChar;
+    }
+
+    (stringNode != null ? stringNode.innerHTML = string + newString : '');
+    stringNode = null;
+
+    return string + newString;
 }
+
 /****************************************************************************
 Reverses the string
 
@@ -400,22 +369,20 @@ document.getElementById('test').innerHTML.reverseString();
 var test = 'This is my test string';
 var newTest = test.reverseString();
 ****************************************************************************/
-if(!String.prototype.reverseString){
-    function reverseString() {
-        var string = this.toString();
-        var strArray = string.split('');
+function reverseString() {
+    var string = this.toString();
+    var strArray = string.split('');
 
-        if (stringNode == null) {
-            getStringParent(string);
-        }
-
-        (stringNode != null ? stringNode.innerHTML = strArray.reverse().join("") : '');
-        stringNode = null;
-
-        return strArray.reverse().join("");
+    if (stringNode == null) {
+        getStringParent(string);
     }
-    String.prototype.reverseString = reverseString;
+
+    (stringNode != null ? stringNode.innerHTML = strArray.reverse().join("") : '');
+    stringNode = null;
+
+    return strArray.reverse().join("");
 }
+
 /****************************************************************************
 Merge the original string with a new string as a specified location based on 
 the pos parameter, which is the index of location you would like the string 
@@ -433,20 +400,33 @@ document.getElementById('test').innerHTML.merge(11, 'spanking new');
 var test = 'This is my test string';
 var newTest = test.merge(11, 'spanking new');
 ****************************************************************************/
-if(!String.prototype.merge){
-    function merge(pos, newString) {
-        var mod = (typeof inplace !== 'boolean' ? true : inplace);
-        var string = this.toString();
-        var strArray = string.split('');
-        strArray.splice(pos, 0, newString);
-        if (stringNode == null) {
-            getStringParent(string);
-        }
-
-        (stringNode != null ? stringNode.innerHTML = strArray.join('') : '');
-        stringNode = null;
-
-        return strArray.join('');
+function merge(pos, newString) {
+    var string = this.toString();
+    var strArray = string.split('');
+    strArray.splice(pos, 0, newString);
+    if (stringNode == null) {
+        getStringParent(string);
     }
-    String.prototype.merge = merge;
+
+    (stringNode != null ? stringNode.innerHTML = strArray.join('') : '');
+    stringNode = null;
+
+    return strArray.join('');
 }
+
+//Extend Stringer functions to Javascript
+String.prototype.trim = trim;
+String.prototype.removeTrailing = removeTrailing;
+String.prototype.removeLeading = removeLeading;
+String.prototype.beginsWith = beginsWith;
+String.prototype.endsWith = endsWith;
+String.prototype.compare = compare;;
+String.prototype.contains = contains;
+String.prototype.findString = findString;
+String.prototype.getString = getString;
+String.prototype.isLower = isLower;
+String.prototype.isUpper = isUpper;
+String.prototype.padLeading = padLeading;
+String.prototype.padTrailing = padTrailing;
+String.prototype.reverseString = reverseString;
+String.prototype.merge = merge;
