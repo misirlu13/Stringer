@@ -1,9 +1,9 @@
-/* Plugin:          Stringer                                        */
-/* Author:          Bradley Drake                                   */
-/* Version:         v1.0                                            */
-/* Description:     Methods used to manipulate strings              */
-/* Documentation:   https://github.com/misirlu13/Stringer.git       */
-/* License:         Apache License, Version 2.0 (the "License")     */
+Plugin:          Stringer                                        
+Author:          Bradley Drake [torchdevelopment.com](http://torchdevelopment.com)                             
+Version:         v1.0                                            
+Description:     Methods used to manipulate strings              
+Documentation:   https://github.com/misirlu13/Stringer.git       
+License:         Apache License, Version 2.0 (the "License")     
 
 
 # Stringer
